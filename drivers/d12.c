@@ -40,7 +40,7 @@ unsigned short d12_read_id(void)
 {
 	unsigned short id;
 	
-	d12_write_commmand(D12_CMD_READ_ID);
+	d12_write_command(D12_CMD_READ_ID);
 	id = d12_read_data();
 	id |= (unsigned short)d12_read_data() << 8;
 	
