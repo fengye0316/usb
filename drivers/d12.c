@@ -18,21 +18,21 @@ static void d12_write_command(unsigned char cmd)
 
 static unsigned char d12_read_data(void)
 {
-	unsigned char tmp;
+	unsigned char val;
 	
 	D12_A0 = 0;
 	D12_RD_N = 0;
 	tmp = D12_DATA_PORT;
 	D12_RD_N = 1;
 	
-	return tmp;
+	return val;
 }
 
-static void d12_write_data(unsigned char tmp)
+static void d12_write_data(unsigned char val)
 {
 	D12_A0 = 0;
 	D12_WR_N = 0;
-	D12_DATA_PORT = tmp;
+	D12_DATA_PORT = val;
 	D12_WR_N = 1;
 }
 
