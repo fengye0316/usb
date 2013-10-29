@@ -1,6 +1,8 @@
 #ifndef __D12_H
 #define __D12_H
 
+#define D12_CHIP_ID			0x1012
+
 #define D12_CMD_READ_ID			0xFD
 
 
