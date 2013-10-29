@@ -1,14 +1,16 @@
-#include <reg52.h>
-#include "delay.h"
+#include "printf.h"
+#include "uart.h""
 
-sbit led1 = P2^0;
+void board_init(void)
+{
+	uart_init();
+}
 
 void main(void)
 {
-	while (1) {
-		led1 = 0;
-		delayms(1000);
-		led1 = 1;
-		delayms(1000);
-	}
+	board_init();
+	
+	printf("/***************Welcome to the usb world!****************/");
+	
+	while (1);
 }
