@@ -22,7 +22,7 @@ static unsigned char d12_read_data(void)
 	
 	D12_A0 = 0;
 	D12_RD_N = 0;
-	tmp = D12_DATA_PORT;
+	val = D12_DATA_PORT;
 	D12_RD_N = 1;
 	
 	return val;
