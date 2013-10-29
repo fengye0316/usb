@@ -1,4 +1,5 @@
 #include "printf.h"
+#include "d12.h"
 
 int usb_init(void)
 {
