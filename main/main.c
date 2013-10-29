@@ -12,7 +12,7 @@ void main(void)
 {
 	board_init();
 	
-	printf("/***************Welcome to the usb world!****************/");
+	printf("/***************Welcome to the usb world!****************/\r\n");
 	
 	while (1);
 }
