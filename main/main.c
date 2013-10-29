@@ -1,5 +1,6 @@
 #include "printf.h"
-#include "uart.h""
+#include "uart.h"
+#include "usb.h"
 
 void board_init(void)
 {
