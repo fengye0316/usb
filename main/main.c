@@ -4,6 +4,7 @@
 void board_init(void)
 {
 	uart_init();
+	usb_init();
 }
 
 void main(void)
