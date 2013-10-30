@@ -1,5 +1,6 @@
 #include "printf.h"
 #include "d12.h"
+#include "delay.h"
 
 int usb_init(void)
 {
@@ -10,6 +11,10 @@ int usb_init(void)
 		printf("d12 is not working!\r\n");
 		return -1;
 	}
+	
+	d12_disconnect();
+	delayms(100);
+	d12_init();
 	
 	return 0;
 }
