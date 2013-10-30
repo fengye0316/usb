@@ -46,3 +46,20 @@ unsigned short d12_read_id(void)
 	
 	return id;
 }
+
+void d12_init(void)
+{
+	EX0 = 1;
+	IT0 = 0;
+	
+	d12_write_command(D12_CMD_SET_MODE);
+	d12_write_data(0x16);
+	d12_write_data(0x47);
+}
+
+void d12_disconnect(void)
+{
+	d12_write_command(D12_CMD_SET_MODE);
+	d12_write_data(0x06);
+	d12_write_data(0x47);
+}
