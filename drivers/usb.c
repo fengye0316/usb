@@ -2,6 +2,29 @@
 #include "d12.h"
 #include "delay.h"
 
+void usb_interrupt_handler(void) interrupt 0
+{
+	unsigned short status;
+	
+	status = d12_read_interrupt_status();
+	switch (status) {
+	case D12_EP0_OUT:
+		break;
+	case D12_EP0_IN:
+		break;
+	case D12_EP1_OUT:
+		break;
+	case D12_EP1_IN:
+		break;
+	case D12_EP2_OUT:
+		break;
+	case D12_EP2_IN:
+		break;
+	default:
+		break;
+	}
+}
+
 int usb_init(void)
 {
 	unsigned short chip_id;
