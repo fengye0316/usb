@@ -63,3 +63,14 @@ void d12_disconnect(void)
 	d12_write_data(0x06);
 	d12_write_data(0x47);
 }
+
+unsigned short d12_read_interrupt_status(void)
+{
+	unsigned short status;
+	
+	d12_write_command(D12_CMD_READ_INTERRUPT);
+	status = d12_read_data();
+	status |= (unsigned short)d12_read_data() << 8;
+	
+	return status;
+}
