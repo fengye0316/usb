@@ -19,7 +19,7 @@
 
 extern unsigned short d12_read_id(void);
 
-void d12_init(void);
-void d12_disconnect(void);
+extern void d12_init(void);
+extern void d12_disconnect(void);
 
 #endif /* __D12_H */
