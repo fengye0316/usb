@@ -14,6 +14,12 @@
 #define D12_EP2_OUT			4
 #define D12_EP2_IN			5
 
+
+#define D12_CMD_SET_MODE		0xF3
+
 extern unsigned short d12_read_id(void);
+
+void d12_init(void);
+void d12_disconnect(void);
 
 #endif /* __D12_H */
