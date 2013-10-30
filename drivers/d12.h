@@ -33,5 +33,6 @@ extern unsigned short d12_read_id(void);
 
 extern void d12_init(void);
 extern void d12_disconnect(void);
+extern unsigned short d12_read_interrupt_status(void);
 
 #endif /* __D12_H */
