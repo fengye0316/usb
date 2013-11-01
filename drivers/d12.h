@@ -13,6 +13,25 @@
 #define D12_EP2_IN			5
 
 
+#define D12_INT_EP0_OUT			(1 << 0)
+#define D12_INT_EP0_IN			(1 << 1)
+#define D12_INT_EP1_OUT			(1 << 2)
+#define D12_INT_EP1_IN			(1 << 3)
+#define D12_INT_EP2_OUT			(1 << 4)
+#define D12_INT_EP2_IN			(1 << 5)
+#define D12_INT_BUS_REST		(1 << 6)
+
+#define D12_EP_STAT_SETUP_PAKCET	(1 << 2)
+#define D12_EP_STAT_BUF0_FULL		(1 << 5)
+#define D12_EP_STAT_BUF1_FULL		(1 << 6)
+#define D12_EP_STAT_STALL		(1 << 7)
+
+#define D12_TRANS_STAT_SUCCESS		(1 << 0)
+#define D12_TRANS_STAT_SETUP_PACKET	(1 << 5)
+#define D12_TRANS_STAT_DATA1_PACKET	(1 << 6)
+#define D12_TRANS_STAT_NOT_READ		(1 << 7)
+
+
 extern unsigned short d12_read_id(void);
 
 extern void d12_init(void);
