@@ -18,5 +18,15 @@ extern unsigned short d12_read_id(void);
 extern void d12_init(void);
 extern void d12_disconnect(void);
 extern unsigned short d12_read_interrupt_status(void);
+extern void d12_set_address(unsigned char idx);
+extern void d12_endpoint_enable(unsigned char cmd);
+extern void d12_select_endpoint(unsigned char idx);
+extern unsigned char d12_read_endpoint_status(unsigned char idx);
+extern unsigned char d12_read_last_trans_status(unsigned char idx);
+extern void d12_ack_setup(void);
+extern unsigned char d12_read_buffer(unsigned char idx, unsigned char *buf, unsigned char size);
+extern void d12_clear_buffer(void);
+extern void d12_validate_buffer(void);
+extern void d12_write_buffer(unsigned char idx, unsigned char *buf, unsigned char size);
 
 #endif /* __D12_H */
