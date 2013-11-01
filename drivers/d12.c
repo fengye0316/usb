@@ -40,7 +40,7 @@ unsigned short d12_read_id(void)
 {
 	unsigned short id;
 	
-	d12_write_command(D12_CMD_READ_ID);
+	d12_write_command(0xFD);	/* 0xFD: D12 read ID command */
 	id = d12_read_data();
 	id |= (unsigned short)d12_read_data() << 8;
 	
@@ -52,14 +52,14 @@ void d12_init(void)
 	EX0 = 1;
 	IT0 = 0;
 	
-	d12_write_command(D12_CMD_SET_MODE);
+	d12_write_command(0xF3);	/* 0xF3: D12 set mode command */
 	d12_write_data(0x16);
 	d12_write_data(0x47);
 }
 
 void d12_disconnect(void)
 {
-	d12_write_command(D12_CMD_SET_MODE);
+	d12_write_command(0xF3);
 	d12_write_data(0x06);
 	d12_write_data(0x47);
 }
@@ -68,7 +68,7 @@ unsigned short d12_read_interrupt_status(void)
 {
 	unsigned short status;
 	
-	d12_write_command(D12_CMD_READ_INTERRUPT);
+	d12_write_command(0xF4);	/* 0xF4: D12 read interrupt register command */
 	status = d12_read_data();
 	status |= (unsigned short)d12_read_data() << 8;
 	
