@@ -74,3 +74,96 @@ unsigned short d12_read_interrupt_status(void)
 	
 	return status;
 }
+
+void d12_set_address(unsigned char addr)
+{
+	d12_write_command(0xD0);	/* 0xD0: D12 set address and enable the function command */
+	d12_write_data(addr | 0x80);
+}
+
+void d12_endpoint_enable(unsigned char cmd)
+{
+	d12_write_command(0xD8);	/* 0xD8: D12 set endpoint enable command */
+	d12_write_data(cmd);
+}
+
+void d12_select_endpoint(unsigned char idx)
+{
+	d12_write_command(0x00 + idx)	/* 0x00+x: D12 select endpoint command */
+}
+
+unsigned char d12_read_endpoint_status(unsigned char idx)
+{
+	unsigned char status;
+	
+	d12_select_endpoint(idx);
+	d12_write_command(0x80 + idx);	/* 0x80+x: D12 read endpoint status command */
+	status = d12_read_data();
+	
+	return status;
+}
+
+unsigned char d12_read_last_trans_status(unsigned char idx)
+{
+	unsigned char status;
+	
+	d12_select_endpoint(idx);
+	d12_write_command(0x40 + idx);	/* 0x40+x: D12 read last transaction status command */
+	status = d12_read_data();
+	
+	return status;
+}
+
+void d12_ack_setup(void)
+{
+	d12_select_endpoint(D12_EP0_IN);
+	d12_write_command(0xF1);	/* 0xF1: D12 acknowledge setup command */
+	d12_select_endpoint(D12_EP0_OUT);
+	d12_write_command(0xF1);
+}
+
+unsigned char d12_read_buffer(unsigned char idx, unsigned char *buf, unsigned char size)
+{
+	unsigned char i, len;
+	
+	d12_select_endpoint(idx);
+	d12_write_command(0xF0);	/* 0xF0: D12 read buffer command */
+	d12_read_data();
+	len = d12_read_data();
+	
+	if (len > size) {
+		len = size;
+	}
+	
+	for (i = 0; i < len; i++) {
+		*buf++ = d12_read_data();
+	}
+	
+	return len;
+}
+
+void d12_clear_buffer(void)
+{
+	d12_write_command(0xF2);	/* 0xF2: D12 clear buffer command */
+}
+
+void d12_validate_buffer(void)
+{
+	d12_write_command(0xFA);	/* 0xFA: D12 validate buffer command */
+}
+
+void d12_write_buffer(unsigned char idx, unsigned char *buf, unsigned char size)
+{
+	unsigned char i;
+	
+	d12_select_endpoint(idx);
+	d12_write_command(0xF0);	/* 0xF0: D12 write buffer command */
+	d12_write_data(0x00);
+	d12_write_data(size);
+	
+	for (i = 0; i < size; i++) {
+		d12_write_data(*buf++);
+	}
+	
+	d12_validate_buffer();
+}
