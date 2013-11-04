@@ -20,7 +20,7 @@ void usb_interrupt_handler(void) interrupt 0
 		break;
 	case D12_EP2_IN:
 		break;
-	case D12_BUS_RESET:
+	case D12_BUS_RST:
 		break;
 	case D12_SPD_CHG:
 		break;
