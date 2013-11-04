@@ -4,7 +4,7 @@
 /* From internet */
 #define D12_CHIP_ID			0x1012
 
-
+/* Endpoint index */
 #define D12_EP0_OUT			0
 #define D12_EP0_IN			1
 #define D12_EP1_OUT			2
@@ -12,7 +12,7 @@
 #define D12_EP2_OUT			4
 #define D12_EP2_IN			5
 
-
+/* Interrupt register bits */
 #define D12_INT_EP0_OUT			(1 << 0)
 #define D12_INT_EP0_IN			(1 << 1)
 #define D12_INT_EP1_OUT			(1 << 2)
@@ -20,12 +20,16 @@
 #define D12_INT_EP2_OUT			(1 << 4)
 #define D12_INT_EP2_IN			(1 << 5)
 #define D12_INT_BUS_REST		(1 << 6)
+#define D12_INT_SPD_CHG			(1 << 7)
+#define D12_INT_DMA_EOT			(1 << 8)
 
+/* Endpoint status bits */
 #define D12_EP_STAT_SETUP_PAKCET	(1 << 2)
 #define D12_EP_STAT_BUF0_FULL		(1 << 5)
 #define D12_EP_STAT_BUF1_FULL		(1 << 6)
 #define D12_EP_STAT_STALL		(1 << 7)
 
+/* Last transaction status register bits */
 #define D12_TRANS_STAT_SUCCESS		(1 << 0)
 #define D12_TRANS_STAT_SETUP_PACKET	(1 << 5)
 #define D12_TRANS_STAT_DATA1_PACKET	(1 << 6)
