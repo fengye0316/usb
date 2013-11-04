@@ -19,7 +19,7 @@
 #define D12_INT_EP1_IN			(1 << 3)
 #define D12_INT_EP2_OUT			(1 << 4)
 #define D12_INT_EP2_IN			(1 << 5)
-#define D12_INT_BUS_RESET		(1 << 6)
+#define D12_INT_BUS_RST			(1 << 6)
 #define D12_INT_SPD_CHG			(1 << 7)
 #define D12_INT_DMA_EOT			(1 << 8)
 
