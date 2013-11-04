@@ -9,6 +9,7 @@ void usb_interrupt_handler(void) interrupt 0
 	status = d12_read_interrupt_status();
 	switch (status) {
 	case D12_EP0_OUT:
+		ep0out_event_handler();
 		break;
 	case D12_EP0_IN:
 		break;
@@ -28,6 +29,20 @@ void usb_interrupt_handler(void) interrupt 0
 		break;
 	default:
 		break;
+	}
+}
+
+void ep0out_event_handler(void)
+{
+	unsigned char buf[8], status;
+	
+	status = d12_read_last_trans_status(D12_EP0_OUT);
+	
+	if (status & D12_TRANS_STAT_SETUP_PACKET) {
+		d12_read_buffer(D12_EP0_OUT, buf, 8);
+		
+		d12_ack_setup();
+		d12_clear_buffer();
 	}
 }
 
