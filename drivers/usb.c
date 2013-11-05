@@ -1,6 +1,8 @@
 #include "printf.h"
 #include "d12.h"
 #include "delay.h"
+#include "ch9.h"
+#include "usb.h"
 
 void usb_interrupt_handler(void) interrupt 0
 {
@@ -36,10 +38,17 @@ void ep0out_event_handler(void)
 {
 	unsigned char buf[8], status;
 	
-	status = d12_read_last_trans_status(D12_EP0_OUT);
+	struct usb_device_request *req = (struct usb_device_request *)buf;
 	
+	status = d12_read_last_trans_status(D12_EP0_OUT);
 	if (status & D12_TRANS_STAT_SETUP_PACKET) {
 		d12_read_buffer(D12_EP0_OUT, buf, 8);
+		printf("bmRequestType 0x%x bRequest 0x%x wValue 0x%x wIndex 0x%x wLength 0x%x\r\n",
+			(int)req->bmRequestType,
+			(int)req->bRequest,
+			(int)req->wValue,
+			(int)req->wIndex,
+			(int)req->wLength);
 		
 		d12_ack_setup();
 		d12_clear_buffer();
